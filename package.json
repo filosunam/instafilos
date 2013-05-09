@@ -1,0 +1,17 @@
+{
+    "name": "instafilos"
+  , "version": "0.0.1"
+  , "scripts": {
+        "start": "node app"
+    }
+  , "dependencies": {
+        "requirejs": "2.x"
+      , "express": "3.x"
+      , "hogan-express": ""
+      , "instagram-node-lib": "0.x"
+      , "socket.io": "0.9"
+    }
+  , "engines": {
+        "node": "0.8.x"
+    }
+}

@@ -1,0 +1,20 @@
+<div class="jumbotron">
+  <h1>La comunidad en Instagram</h1>
+  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+</div>
+
+<div data-bind="foreach: images" class="clearfix">
+  <p class="pull-left" style="margin-right: 38px">
+    <a href="#" rel="lightbox" data-bind="attr: { href: $data.images.standard_resolution.url, title: $data.caption ? $data.caption.text : '' }">
+      <img alt="Testing..." data-bind="attr: { src: $data.images.thumbnail.url }">
+    </a>
+  </p>
+</div>
+
+<div class="btn-center hide">
+  <a href="#" class="btn btn-block btn-large btn-success" id="more" data-bind="attr: { 'data-max-id': next_max_id }, text: 'Cargar más'"></a>
+</div>
+
+<div class="progress progress-striped active mini">
+  <div class="bar" style="width: 100%"></div>
+</div>

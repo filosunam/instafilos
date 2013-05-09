@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf8">
+    <title>Instagram</title>
+    <link rel="stylesheet" type="text/css" href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="http://www.filos.unam.mx">Facultad de Filosofía y Letras</a>
+          <ul class="nav">
+            <li><a href="/">Inicio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      {{{ yield }}}
+    </div>
+
+    <script src="/js/jquery-1.7.2.min.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-2.2.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/lightbox.js"></script>
+    <script src="/js/application.js"></script>
+  </body>
+</html>
