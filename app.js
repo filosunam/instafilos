@@ -36,6 +36,11 @@ requirejs(['conf', 'express'], function(conf, express){
   app.engine('html', require('hogan-express'));
   app.enable('view cache');
 
+  app.use(function(req, res, next) {
+    res.locals.url = req.protocol + "://" + req.get('host');
+    next();
+  });
+
   // routes
   app.get('/', function(req, res){
     res.render('index');

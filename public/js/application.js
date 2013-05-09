@@ -42,7 +42,6 @@ $(function(){
 
   ko.applyBindings(imagesModel);
 
-  var socket = io.connect('http://localhost:3001');
   socket.on('recents', function(res) {
 
     imagesModel.max(res.data.length);
