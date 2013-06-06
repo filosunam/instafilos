@@ -1,6 +1,6 @@
 {
     "name": "instafilos"
-  , "version": "0.0.1"
+  , "version": "0.1.0"
   , "scripts": {
         "start": "node app"
     }
@@ -10,6 +10,7 @@
       , "hogan-express": ""
       , "instagram-node-lib": "0.x"
       , "socket.io": "0.9"
+      , "underscore": ""
     }
   , "engines": {
         "node": "0.8.x"
