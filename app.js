@@ -98,6 +98,7 @@ requirejs(['conf', 'express'], function(conf, express){
                 // push images to browser
                 socket.emit('recents', {
                     data: images
+                  , resource: {}
                   , locations: locations
                 });
 
