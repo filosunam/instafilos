@@ -27,6 +27,12 @@ requirejs(['conf', 'express'], function(conf, express){
     app.use(express.session({ cookie: { maxAge: 60000 }}));
   });
 
+  // compile css
+  app.use(require('less-middleware')({
+    src: __dirname + '/public',
+    yuicompress: true
+  }));
+
   // static files
   app.use(express.static(__dirname + '/public'));
 
@@ -47,89 +53,48 @@ requirejs(['conf', 'express'], function(conf, express){
     res.render('index');
   });
 
-  app.get('/show', function(req, res){
-    res.render('show');
-  });
-
   // socket.io
   io.sockets.on('connection', function (socket) {
 
-    var images    = []
-      , locations = [];
-
+    var bulk = [];
+    
     // search locations around the school
-    ig.locations.search({
-        lat: 19.3341866760000001
-      , lng: -99.186748266000001
-      , complete: function(data, resource){
-          // for each location ID
-          data.forEach(function(location, index){
-            
-            getImagesFromLocation(location, index, data);
+    socket.on('bulk', function(data){    
 
-          });
-        }
-    });
-
-    var getImagesFromLocation = function(location, index, data){
-
-      ig.locations.recent({
-          location_id: location.id
-        , max_id: location.max_id
-        , complete: function(d, r){
-
-            // for push more images to browser
-            locations.push({
-                location: location
-              , max_id: r.next_max_id
-            });
-
-            // for each bulk of images
-            d.forEach(function(image, i){
-
-              // push to all images
-              images.push(image);
-              
-              if (index === data.length - 1 && i === d.length - 1) {
-                
-                // sort by date descending
-                images  = _.sortBy(images, 'created_time').reverse();
-
-                // push images to browser
-                socket.emit('recents', {
-                    data: images
-                  , resource: {}
-                  , locations: locations
-                });
-
-                console.log('Send images:', images.length);
-
-              }
-
+      ig.locations.search({
+          lat: 19.3341866760000001
+        , lng: -99.186748266000001
+        , complete: function(data){
+            data.forEach(function(location){
+              getImagesFromLocation(location, data);
             });
           }
       });
-    };
-
-
-    // send more images, push, push, push...
-    socket.on('more', function(data) {
-
-      /*
-      data = data.max_ids.split(',');
-      data.forEach(function(location, index){
-        location = location.split(':');
-        location = {
-            id     : location[0]
-          , max_id : location[1]
-        };
-        console.log(location);
-        getImagesFromLocation(location, index, data);
-      
-      });
-      */
 
     });
+
+    var getImagesFromLocation = function(location, data){
+      var options = { 
+          location_id: location.id
+        , max_id: data.max
+        , count: 25
+        , complete: function(data, resource){
+            bulk.push({
+                data: data
+              , resource: resource
+            });
+            socket.emit('recents', bulk);
+          }
+      };
+
+      // pagination
+      if(data.max_id) {
+        options.max_id = data.max_id;
+      }
+
+      // send images
+      return ig.locations.recent(options);
+    };
 
   });
 

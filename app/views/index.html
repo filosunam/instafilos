@@ -1,21 +1,30 @@
-<div id="cloud" class="" data-bind="foreach: images">
-  <img data-bind="attr: { src: $data.images.thumbnail.url }">
+<div id="cloud">
+  <img src="/images/instafilos.png" alt="La comunidad en Instagram">
 </div>
 
-<div class="jumbotron">
+<div class="jumbotronix">
   <h1>La comunidad en Instagram</h1>
   <p class="lead">
   	Conoce un poco de la vida al interior y al exterior de la 
-  	<strong>Facultad de Filosofía y Letras</strong> con fotografías 
+  	<strong>Facultad de Filosofía y Letras</strong> con imágenes 
   	capturadas por la comunidad que reflejan su convivencia y 
   	sus actividades cotidianas.
   </p>
-  
-  <div class="progress progress-striped active mini">
-    <div class="bar" style="width: 100%"></div>
-  </div>
+</div>
 
-  <div class="btn-center hide">
-    <a class="btn btn-block btn-large btn-success" href="/show">Mostrar más fotos</a>
-  </div>
+<p>
+  <!--<a class="btn btn-center btn-large btn-success" data-bind="attr: { 'data-max-id': next_max_id }, text: 'Mostrar más fotos'" href="#" id="more"></a>-->
+  <a class="btn btn-center btn-large btn-success" href="#" id="more">Mostrar imágenes</a>
+</p>
+
+<div id="progress" class="progress progress-striped active mini hide">
+  <div class="progress-bar" style="width: 100%"></div>
+</div>
+
+<div id="bulk" data-bind="foreach: images" class="clearfix" style="margin: 50px 0 100px 0">
+  <p class="pull-left" style="margin-right: 38px">
+    <a href="#" rel="lightbox" data-bind="attr: { href: $data.images.standard_resolution.url, title: $data.caption ? $data.caption.text : '' }">
+      <img alt="" data-bind="attr: { src: $data.images.thumbnail.url }">
+    </a>
+  </p>
 </div>

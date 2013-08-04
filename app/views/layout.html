@@ -3,16 +3,21 @@
   <head>
     <meta charset="utf8">
     <title>Instagram</title>
-    <link rel="stylesheet" type="text/css" href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/lightbox.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="http://www.filos.unam.mx">Facultad de Filosofía y Letras</a>
-          <ul class="nav">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="http://www.filos.unam.mx">Facultad de Filosofía y Letras</a>
+        <div class="nav-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
             <li><a href="/">Inicio</a></li>
           </ul>
         </div>
@@ -29,6 +34,6 @@
     <script type="text/javascript">
       var socket = io.connect('{{url}}');
     </script>
-    <script src="/js/application.js"></script>
+    <script src="/js/application.min.js"></script>
   </body>
 </html>
