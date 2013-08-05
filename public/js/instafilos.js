@@ -66,15 +66,14 @@ $(function(){
     });
     
     //imagesModel.init();
-    $('#more').hide();
 
   });
 
   $('#more').click(function(e){
     e.preventDefault();
+    $(this).hide();
     $('#cloud').hide();
-    $('#progress.progress').show();
-    
+    $('.progress.hide').show();
     socket.emit('bulk', {
       /*max_id: $(this).attr('data-max-id')*/
     });
